@@ -1,0 +1,204 @@
+*{
+    scroll-behavior: smooth;
+}
+body{
+    background-color: black;
+    color: #fff;
+    overflow: hidden;
+}
+/* sideBar section */
+#nav {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    display: flex;
+    transform: translatex(-200px);
+}
+
+#nav-container {
+    width: 200px;
+    background-color: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#nav-icon {
+    padding: 10px 0px;
+    width: 60px;
+    font-size: 30px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+#nav-icon i{
+    color: black;
+    cursor: pointer;
+
+}
+
+#nav-container a {
+    padding: 10px 8px;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+    color: white;
+    text-align: center;
+
+}
+.nav-links{
+    position: relative;
+    top: 200px;
+}
+/* sideBar section */
+/* loading section */
+
+.loading{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,.9);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    margin: 100px auto;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+  
+  }
+  
+  .spinner > div {
+    background-color: #fff;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+    
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  }
+  
+  .spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+  }
+  
+  .spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+  }
+  
+  .spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+  }
+  
+  .spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+  }
+  
+  @-webkit-keyframes sk-stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+    20% { -webkit-transform: scaleY(1.0) }
+  }
+  
+  @keyframes sk-stretchdelay {
+    0%, 40%, 100% { 
+      transform: scaleY(0.4);
+      -webkit-transform: scaleY(0.4);
+    }  20% { 
+      transform: scaleY(1.0);
+      -webkit-transform: scaleY(1.0);
+    }
+  }
+  /* loading section */
+/* meals display */
+.details-layOut{
+        width: 100%;
+        height: 100%;
+        top: 100%;
+        left: 0;
+        background-color: rgba(255,255,255,.7);
+        text-align: center;
+        font-weight: 800;
+        transition: all .3s;
+        overflow: hidden;
+        cursor: pointer;
+}
+.Category:hover .details-layOut {
+    top: 0%;
+}
+.meals-layOut{
+
+    width: 100%;
+    height: 100%;
+    top: 100%;
+    left: 0;
+    background-color: rgba(255,255,255,.7);
+    color: #111;
+    text-align: center;
+    font-weight: 800;
+    transition: all .3s;
+    overflow: hidden;
+    cursor: pointer;
+}
+.Category:hover .meals-layOut {
+top: 0%;
+}
+/* meals display */
+/* meal details */
+#recipes li{
+    list-style: none;
+    padding-left: 0px; 
+
+}
+#recipes{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0px;
+}
+#tags li{
+    list-style: none;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding-left: 0px;
+}
+#tags{
+    padding-left: 0px;
+    display: flex;
+flex-wrap: wrap;
+/* meal details */
+
+}
+.country{
+    cursor: pointer;
+}
+.components {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+.contact{
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        justify-content: center;
+        text-align: center;
+    
+}
