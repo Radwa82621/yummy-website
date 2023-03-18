@@ -1,6 +1,4 @@
 "use strict";
-
-
 let allMeals = [];
 let idCategory = ""
 let password = ""
@@ -10,33 +8,31 @@ let phoneValidat = false
 let ageValidat = false
 let passwordValidat = false
 let repasswordValidat = false
-
-
 $(".open-icon").click(function () {
     let navContainerWidth = $("#nav-container").innerWidth();
     if ($("#nav").css("left") == "0px") {
 
         $("#nav").animate({ left: `${navContainerWidth}` }, 300)
-            $(".nav-links").animate({top: 0}, 300)
+        $(".nav-links").animate({ top: 0 }, 300)
         $(".open-icon").removeClass("fa-align-justify");
         $(".open-icon").addClass("fa-x");
 
     }
     else {
-        $("#nav").animate({ left: "0px" }, 300 )
+        $("#nav").animate({ left: "0px" }, 300)
         $(".open-icon").removeClass("fa-x");
         $(".open-icon").addClass("fa-align-justify");
-        $(".nav-links").animate({top: "200px"}, 300)
+        $(".nav-links").animate({ top: "200px" }, 300)
 
-       
+
     }
 })
 
-$(".nav-links a").click(function(){
+$(".nav-links a").click(function () {
     $("#nav").animate({ left: "0px" }, 300)
     $(".open-icon").removeClass("fa-x");
     $(".open-icon").addClass("fa-align-justify");
-    $(".nav-links").animate({top: "200px"}, 300)
+    $(".nav-links").animate({ top: "200px" }, 300)
 
 })
 
@@ -54,7 +50,6 @@ $("document").ready(function () {
 
 // search
 $("#search").click(function () {
-    cat()
     $(".search").removeClass("d-none");
     $(".searchBars").removeClass("d-none")
     $(".cateogories").addClass("d-none");
@@ -74,7 +69,7 @@ async function searchByName(name) {
     let meals = await api.json()
     allMeals.splice(0, allMeals.length);
     allMeals.push(...(meals.meals))
-    allMeals=allMeals.slice(0,20)
+    allMeals = allMeals.slice(0, 20)
 
     displayByNameSearch()
 }
@@ -85,14 +80,14 @@ function displayByNameSearch() {
         <div class=" mx-3 p-0 position-relative rounded overflow-hidden">
          <img src="${allMeals[i].strMealThumb}" class="   w-100 rounded overflow-hidden p-0" alt="">
         <div class="meals-layOut position-absolute d-flex justify-content-center align-items-center w-100 p-3" data-id="${allMeals[i].idMeal}" id="meals">
-            <h2>${allMeals[i].strMeal}</h2>
+            <h2 data-id="${allMeals[i].idMeal}">${allMeals[i].strMeal}</h2>
         </div>  </div> 
         </div> `
     }
 
     $(".searchMeals").html(cartona);
 
-    $(".meals-layOut").click(function (event) {
+    $(".Category").click(function (event) {
         let mealID = $(event.target).attr("data-id")
         getMealDetails(mealID)
     })
@@ -103,7 +98,7 @@ async function searchByFLetter(letter) {
     let meals = await api.json()
     allMeals.splice(0, allMeals.length);
     allMeals.push(...(meals.meals))
-    allMeals=allMeals.slice(0,20)
+    allMeals = allMeals.slice(0, 20)
 
 
     displayByNameSearch()
@@ -132,7 +127,7 @@ async function cat() {
     let meals = await api.json()
     allMeals.splice(0, allMeals.length);
     allMeals.push(...meals.categories)
-    allMeals=allMeals.slice(0,20)
+    allMeals = allMeals.slice(0, 20)
 
 
 
@@ -147,8 +142,9 @@ function displayCateogeries() {
         var CategoryCode = allMeals[i].strCategory
         cartona += ` <div class=" col-md-3  m-4 p-0 overflow-hidden Category" >
         <img src="${allMeals[i].strCategoryThumb}" class=" position-relative p-0 w-100 rounded-1 overflow-hidden" alt="">
-        <div class="details-layOut position-absolute d-flex justify-content-center align-items-center" data-cat="${allMeals[i].strCategory}">
-            <h2>${allMeals[i].strCategory}</h2>
+        <div class="details-layOut rounded position-absolute d-flex justify-content-center " data-cat="${allMeals[i].strCategory}">
+          <div>  <h2 class="mb-3" data-cat="${allMeals[i].strCategory}">${allMeals[i].strCategory}</h2>
+          <p data-cat="${allMeals[i].strCategory}">${allMeals[i].strCategoryDescription}</p></div>
         </div>
 
     </div>`
@@ -171,18 +167,18 @@ async function getCateogoryDetails(CategoryCode) {
     let meals = await api.json()
     allMeals.splice(0, allMeals.length);
     allMeals.push(...(meals.meals))
-    allMeals=allMeals.slice(0,20)
+    allMeals = allMeals.slice(0, 20)
     displayCateogoryDetails()
 }
 
 function displayCateogoryDetails() {
-   let cartona = ``;
+    let cartona = ``;
     allMeals = allMeals.slice(0, 20);
     for (let i = 0; i < allMeals.length; i++) {
         cartona += ` <div class=" col-md-3 overflow-hidden Category mb-4" id="cateogoryMeals roundded">
         <div class=" position-relative overflow-hidden roundded"> <img src="${allMeals[i].strMealThumb}" class="  w-100 rounded overflow-hidden" alt="">
        <div class="meals-layOut rounded position-absolute d-flex justify-content-center align-items-center w-100" data-id="${allMeals[i].idMeal}" id="meals">
-           <h2>${allMeals[i].strMeal}</h2>
+           <h2 data-id="${allMeals[i].idMeal}">${allMeals[i].strMeal}</h2>
        </div>  </div> 
        </div> `  }
 
@@ -204,7 +200,7 @@ async function getMealDetails(mealID) {
     let meals = await api.json()
     allMeals.splice(0, allMeals.length);
     allMeals.push(...meals.meals)
-    allMeals=allMeals.slice(0,20)
+    allMeals = allMeals.slice(0, 20)
     displayMealDetails(allMeals)
 
 }
@@ -223,7 +219,7 @@ function displayMealDetails(allMeals) {
 
 
 
-$("#mealName").html(`${allMeals[0].strMeal}`)
+    $("#mealName").html(`${allMeals[0].strMeal}`)
     $("#mealImage").attr("src", `${allMeals[0].strMealThumb}`)
     $(".meal-desc").html(`${allMeals[0].strInstructions}`)
     $("#mealArea").html(`${allMeals[0].strArea}`)
@@ -241,7 +237,7 @@ $("#mealName").html(`${allMeals[0].strMeal}`)
         }
     }
 
-  let  cartona = ``;
+    let cartona = ``;
     for (let i = 0; i < ingredients.length; i++) {
         cartona += `<span class="alert alert-info my-3 mx-1 p-1 green rounded w-auto fs-2">${ingredients[i]}</span>`
     }
@@ -288,7 +284,7 @@ async function getAreas() {
     allMeals.splice(0, allMeals.length);
     allMeals.push(meals)
     let countries = allMeals[0].meals
-    countries=countries.slice(0,20)
+    countries = countries.slice(0, 20)
 
     displayByArea(countries)
 }
@@ -311,9 +307,9 @@ async function getMealsByArea(country) {
     let api = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`)
     let meals = await api.json()
     allMeals.splice(0, allMeals.length);
-    allMeals.push(meals)   
-      let areaMeals = allMeals[0].meals
-      areaMeals=areaMeals.slice(0,20)
+    allMeals.push(meals)
+    let areaMeals = allMeals[0].meals
+    areaMeals = areaMeals.slice(0, 20)
     displayMealsByArea(areaMeals)
     $(".search").addClass("d-none");
     $(".cateogories").addClass("d-none");
@@ -322,13 +318,13 @@ async function getMealsByArea(country) {
     $(".area").addClass("d-none");
 };
 function displayMealsByArea(areaMeals) {
-   let cartona = ``;
+    let cartona = ``;
     allMeals = allMeals.slice(0, 20);
     for (let i = 0; i < areaMeals.length; i++) {
         cartona += ` <div class=" col-md-3 overflow-hidden Category mb-4" id="cateogoryMeals">
         <div class=" position-relative overflow-hidden rounded"> <img src="${areaMeals[i].strMealThumb}" class="  w-100 rounded " alt="">
        <div class="meals-layOut rounded position-absolute d-flex justify-content-center align-items-center w-100"  id="meals" data-id="${areaMeals[i].idMeal}">
-           <h2>${areaMeals[i].strMeal}</h2>
+           <h2 data-id="${areaMeals[i].idMeal}">${areaMeals[i].strMeal}</h2>
        </div>  </div> 
        </div> `  }
 
@@ -401,13 +397,13 @@ async function getIngredientsMeals(component) {
     $("#areaMealsContainer").addClass("d-none");
 };
 function displayMealsByIngredients(ingredientsMeals) {
-   let cartona = ``;
+    let cartona = ``;
     ingredientsMeals = ingredientsMeals.slice(0, 20);
     for (let i = 0; i < ingredientsMeals.length; i++) {
         cartona += ` <div class=" col-md-3 overflow-hidden Category mb-4" id="cateogoryMeals">
         <div class="position-relative rounded overflow-hidden"> <img src="${ingredientsMeals[i].strMealThumb}" class="  w-100 rounded-1 overflow-hidden" alt="">
        <div class="meals-layOut rounded position-absolute d-flex justify-content-center align-items-center w-100"  id="meals" data-id="${ingredientsMeals[i].idMeal}">
-           <h2>${ingredientsMeals[i].strMeal}</h2>
+           <h2 data-id="${ingredientsMeals[i].idMeal}">${ingredientsMeals[i].strMeal}</h2>
        </div>  </div> 
        </div> `  }
 
@@ -460,7 +456,7 @@ function checkInputs() {
         } else {
             $("#emailAlert").removeClass("d-none");
             emailValidat = false;
-        }button()
+        } button()
     })
 
     $("#phoneInput").keyup(function () {
@@ -473,7 +469,7 @@ function checkInputs() {
         } else {
             $("#phoneAlert").removeClass("d-none");
             phoneValidat = false;
-        }button()
+        } button()
     })
     $("#ageInput").keyup(function () {
         let age = document.getElementById("ageInput").value
@@ -485,7 +481,7 @@ function checkInputs() {
         } else {
             $("#ageAlert").removeClass("d-none");
             ageValidat = false;
-        }button()
+        } button()
     })
 
 
@@ -498,7 +494,7 @@ function checkInputs() {
         } else {
             $("#passwordAlert").removeClass("d-none");
             passwordValidat = false;
-        }button()
+        } button()
 
     })
 
@@ -512,17 +508,15 @@ function checkInputs() {
         } else {
             $("#repasswordAlert").removeClass("d-none");
             repasswordValidat = false;
-        }button()
+        } button()
     })
-    function button(){
-        if (nameValidat == true && emailValidat == true &&phoneValidat == true &&ageValidat == true
-             &&passwordValidat == true &&repasswordValidat == true ){
-    $("#submitBtn").removeClass("btn-outline-danger").addClass("btn-danger").prop("disabled",false)
+    function button() {
+        if (nameValidat == true && emailValidat == true && phoneValidat == true && ageValidat == true
+            && passwordValidat == true && repasswordValidat == true) {
+            $("#submitBtn").removeClass("btn-outline-danger").addClass("btn-danger").prop("disabled", false)
 
         }
     }
-
-
 }
 
 
